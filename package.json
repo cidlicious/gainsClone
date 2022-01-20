@@ -1,0 +1,21 @@
+{
+  "name": "gains-clone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "abi-decoder": "^2.4.0",
+    "dotenv": "^10.0.0",
+    "ethers": "^5.5.4",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.6",
+    "web3": "^1.6.0",
+    "ws": "^8.2.3"
+  }
+}
