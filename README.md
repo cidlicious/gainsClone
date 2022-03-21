@@ -1,6 +1,8 @@
+MONITOR YOUR BOT. USE MANUAL CLOSING IF AN ACTION IS MISSED.
+
 # Gains Clone
 Fork this repo to begin cloning.
-Find the best traders: https://tradehistory.herokuapp.com/
+Find the best traders at https://tradehistory.herokuapp.com/
 
 ## CONFIG
 
@@ -29,10 +31,15 @@ Find the best traders: https://tradehistory.herokuapp.com/
    }
 ]
 ```
-trades will not open of maxCollateral causes the trade to be below min posistion size
+*trades will not open if maxCollateral causes the trade to be below min position size
+
+*if bot has open trades close trades before updaing maxCollateral
 
 ### WSS_URL
-Create your own private wss with https://www.alchemy.com/ for free
+Create your own private wss with https://www.alchemy.com/ for free.
 
 ### Manually Closing Trades
-You can maually close trades by opening your app in a browser and hitting your app with the close trade string as an endpoint. eg www.myapp.com/closetradestring/a/b/c
+Maually close trades by opening your app in a browser and hitting your app with the close trade string as an endpoint. eg. www.myapp.com/closetrade/a/b/c
+
+### Interface
+![image](https://user-images.githubusercontent.com/3924075/160455689-0da1c0c1-7583-491c-afce-22a23cd9f5bc.png)
