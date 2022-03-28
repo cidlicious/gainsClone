@@ -33,11 +33,25 @@ setTimeout(() => {
 		claimTimeoutOrders();
 		addDai();
 	}, 3 * 1000);
-}, 25 * 1000);
+}, 5 * 1000);
+
+const getProvider = (wssUrl) => {
+	const provider = new Web3.providers.WebsocketProvider(wssUrl, {clientConfig:{keepalive:true, keepaliveInterval:45*1000}});
+	provider.on('connect', () => console.log('WS Connected wssUrl: ' + wssUrl));
+	provider.on('error', e => {
+		//console.error('WS Error ' + wssUrl);
+		web3.setProvider(getProvider(wssUrl));
+	})
+	provider.on('end', e => {
+		console.error('WS End ' + wssUrl);
+		web3.setProvider(getProvider(wssUrl));
+	})
+	return provider
+}
 
 async function start() {
 	try {
-		web3 = new Web3(WSS_URL);
+		web3 = new Web3(getProvider(WSS_URL));
 	} catch (e) {
 		setTimeout(async () => {
 			start();
