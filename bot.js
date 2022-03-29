@@ -49,6 +49,7 @@ const getProvider = (wssUrl) => {
 	return provider
 }
 
+let wssErrorCount = 0;
 async function start() {
 	try {
 		web3 = new Web3(getProvider(WSS_URL));
@@ -63,9 +64,10 @@ async function start() {
 	tradingContract = new web3.eth.Contract(TRADING_ABI, tradingAddress);
 
 	let socket = new WebSocket(TRANSACTION_WSS_URL);
-	socket.onclose = () => { setTimeout(() => { start() }, 15*1000); };
-	socket.onerror = () => { socket.close(); };
+	socket.onclose = () => { setTimeout(() => { start() }, 15*1000); wssErrorCount++;};
+	socket.onerror = () => { socket.close();  if(wssErrorCount == 10) { restartWss(); }};
 	socket.onmessage = async (msg) => {
+		wssErrorCount = 0;
 		const message = JSON.parse(msg.data);
 		if(message.eventName == 'transaction') {
 			selectType(message.transaction);
@@ -1185,3 +1187,16 @@ function pricesWss() {
 }
 pricesWss();
 
+async function restartWss() {
+	if (process.env.BEARER_TOKEN) {
+		console.log("Restarting gains-trade-wss");
+		fetch("https://api.heroku.com/apps/gains-trade-wss/dynos", {
+			method: 'DELETE',
+			headers: {
+				'Content-type': 'application/json',
+				'Accept': 'application/vnd.heroku+json; version=3',
+				'Authorization': 'Bearer ' + process.env.BEARER_TOKEN
+			}
+		});
+	}
+}
