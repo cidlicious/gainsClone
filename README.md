@@ -33,7 +33,7 @@ Find the best traders at https://tradehistory.herokuapp.com/
 ```
 *trades will not open if maxCollateral causes the trade to be below min position size
 
-*if bot has open trades close trades before updaing maxCollateral
+*if bot has open trades close trades before updating maxCollateral
 
 ### WSS_URL
 Create your own private wss with https://www.alchemy.com/ for free.
