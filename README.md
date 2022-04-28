@@ -43,3 +43,7 @@ Maually close trades by opening your app in a browser and hitting your app with 
 
 ### Interface
 ![image](https://user-images.githubusercontent.com/3924075/160455689-0da1c0c1-7583-491c-afce-22a23cd9f5bc.png)
+
+### Discord Channel Notifcations
+Create your own discord bot to send notiifcations to a private channel. https://discord.com/developers/applications
+Populate DISCORD_LOGIN_TOKEN and DISCORD_CHANNEL_ID env vars
